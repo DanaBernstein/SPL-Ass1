@@ -39,6 +39,7 @@ public:
      */
     ~PointerWrapper() {
         delete ptr;
+        ptr = nullptr;
     }
 
     // ========== COPY OPERATIONS (DELETED) ==========
@@ -140,7 +141,7 @@ public:
      */
     void reset(T* new_ptr = nullptr) {
         delete ptr;
-        ptr=new_ptr;
+        ptr = new_ptr;
     }
 
     // ========== UTILITY FUNCTIONS ==========
