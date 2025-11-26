@@ -22,7 +22,7 @@ Playlist::~Playlist() {
 }
 
 Playlist::Playlist(const Playlist &other)
-    :head(other.head), 
+    :head(other.head ? other.head->clone() : nullptr), 
     playlist_name(other.playlist_name), 
     track_count(other.track_count) {}
 
@@ -30,7 +30,8 @@ Playlist &Playlist::operator=(const Playlist &other)
 {
     if(this == &other) return *this;
     delete head;
-    head = other.head->clone();
+    if(other.head) head = other.head->clone();
+    else head = nullptr;
     playlist_name = other.playlist_name;
     track_count = other.track_count;
     return *this;
@@ -47,7 +48,8 @@ PlaylistNode::~PlaylistNode(){
     }
 }
 
-PlaylistNode::PlaylistNode(const PlaylistNode &other):track(other.track), next(nullptr){
+PlaylistNode::PlaylistNode(const PlaylistNode &other):track(nullptr), next(nullptr){
+    if(other.track) track = other.track->clone().release();
     if(other.next){
         next = other.next -> clone();
     }
@@ -62,8 +64,10 @@ PlaylistNode &PlaylistNode::operator=(const PlaylistNode &other)
     if(&other == this) return *this;
     delete track;
     delete next;
-    track = other.track;
-    next = other.next->clone();
+    if(other.track) track = other.track -> clone().release();
+    else track = nullptr;
+    if(other.next) next = other.next->clone();
+    else next = nullptr;
     return *this;
 }
 

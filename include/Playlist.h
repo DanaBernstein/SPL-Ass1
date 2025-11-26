@@ -21,8 +21,8 @@ struct PlaylistNode {
 
     PlaylistNode(AudioTrack* t) : track(t), next(nullptr) {}
     ~PlaylistNode();
-    PlaylistNode(const PlaylistNode&);
-    PlaylistNode& operator=(const PlaylistNode&);
+    PlaylistNode(const PlaylistNode& other);
+    PlaylistNode& operator=(const PlaylistNode& other);
     PlaylistNode* clone() const;
 };
 
