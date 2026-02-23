@@ -57,8 +57,9 @@ Leveraging standard C++ polymorphism, the system treats different audio formats 
 ## 👥 Authors
 
 **Hila Zuckerman** - 212735450
-**Dana Bernstien** - 325107266
+**Dana Bernstein** - 325107266
 
 ---
+
 
 *This project was developed as part of the Systems Programming Lab (SPL) course, focusing on advanced C++ concepts and efficient resource management.*
